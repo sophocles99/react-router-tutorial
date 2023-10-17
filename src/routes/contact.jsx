@@ -1,14 +1,13 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from "../contacts";
+
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
 
 export default function Contact() {
-  const contact = {
-    first: "David",
-    last: "McQueen",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "sophocles99",
-    notes: "Some notes",
-    favourite: true,
-  };
+  const contact = useLoaderData();
 
   return (
     <div id="contact">
@@ -23,7 +22,7 @@ export default function Contact() {
               {contact.first} {contact.last}
             </>
           ) : (
-            <i>No Name</i>
+            <i>No Name {contact.id}</i>
           )}{" "}
           <Favourite contact={contact} />
         </h1>
@@ -50,7 +49,9 @@ export default function Contact() {
                 event.preventDefault();
               }
             }}
-          ></Form>
+          >
+            <button type="submit">Delete</button>
+          </Form>
         </div>
       </div>
     </div>
