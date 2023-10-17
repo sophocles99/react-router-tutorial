@@ -1,10 +1,12 @@
+import { Outlet } from "react-router-dom";
+
 export default function Root() {
   return (
     <>
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
-          <from id="search-form" role="search">
+          <form id="search-form" role="search">
             <input
               id="q"
               aria-label="Search contacts"
@@ -14,7 +16,7 @@ export default function Root() {
             />
             <div id="search-spinner" aria-hidden hidden={true} />
             <div className="sr-only" aria-live="polite"></div>
-          </from>
+          </form>
         </div>
         <nav>
           <ul>
@@ -27,7 +29,9 @@ export default function Root() {
           </ul>
         </nav>
       </div>
-      <div id="detail"></div>
+      <div id="detail">
+        <Outlet />
+      </div>
     </>
   );
 }
