@@ -7,7 +7,7 @@ export async function loader({ params }) {
 }
 
 export default function Contact() {
-  const contact = useLoaderData();
+  const {contact} = useLoaderData();
 
   return (
     <div id="contact">
@@ -22,7 +22,7 @@ export default function Contact() {
               {contact.first} {contact.last}
             </>
           ) : (
-            <i>No Name {contact.id}</i>
+            <i>No Name</i>
           )}{" "}
           <Favourite contact={contact} />
         </h1>
